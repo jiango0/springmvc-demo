@@ -14,7 +14,7 @@
 	    http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.1.xsd">
 	
 	<!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
-	<context:component-scan base-package="com.bigdata" />
+	<context:component-scan base-package="com.bigdata,com.mongo" />
 	<!-- 系统日志启用 -->
 	<aop:aspectj-autoproxy proxy-target-class="true"/> 
 	
