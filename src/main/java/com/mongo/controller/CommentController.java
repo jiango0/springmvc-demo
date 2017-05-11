@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mongo.common.Page;
 import com.mongo.entity.Comment;
 import com.mongo.service.ICommentService;
 
@@ -43,6 +44,21 @@ public class CommentController {
 	@RequestMapping(value="/getById")
 	public Comment getById(@RequestBody Comment comment){
 		return commentService.getById(comment);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/list")
+	public List<Comment> list( Comment comment, Integer pageNo, Integer pageSize){
+		Page<Comment> page = new Page<>();
+		if(pageNo != null){
+			page.setPageNo(pageNo);
+		}
+		if(pageSize != null){
+			page.setPageSize(pageSize);
+		}
+		commentService.list(comment, page);
+		List<Comment> list = page.getResultObj();
+		return list;
 	}
 	
 }
