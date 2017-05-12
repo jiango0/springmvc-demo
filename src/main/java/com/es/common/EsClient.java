@@ -10,9 +10,9 @@ public class EsClient {
 	
 	
 	public Client getClient(){
-		new TransportClient();
-		Client client = TransportClient.builder().build()
-                .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("127.0.0.1"), 9300));
+		
+//		Client client = TransportClient.builder().build()
+//                .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("127.0.0.1"), 9300));
 	}
 	
 }
