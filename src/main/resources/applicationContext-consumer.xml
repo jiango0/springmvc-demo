@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop  http://www.springframework.org/schema/aop/spring-aop.xsd      
+	http://www.springframework.org/schema/beans    http://www.springframework.org/schema/beans/spring-beans.xsd    
+	http://www.springframework.org/schema/context     http://www.springframework.org/schema/context/spring-context.xsd  
+	http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+	http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo.xsd">
+	
+	<!-- 创建消息转换器为SimpleMessageConverter -->
+    <bean id="serializerMessageConverter"  class="org.springframework.amqp.support.converter.SimpleMessageConverter"></bean>
+	
+	<!-- 用于接收消息的处理类 -->
+    <bean id="rmqConsumer" class="com.rabbitmq.consumer.TestConsumer"></bean>
+    
+    <bean id="messageListenerAdapter"  class="org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter">
+        <constructor-arg ref="rmqConsumer" />
+        <property name="defaultListenerMethod" value="execute"></property>
+        <property name="messageConverter" ref="serializerMessageConverter"></property>
+    </bean>
+      
+    <!-- 用于消息的监听的容器类SimpleMessageListenerContainer,监听队列  queues可以传多个-->
+    <bean id="listenerContainer"  class="org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer">
+        <property name="queues" ref="queue"></property>
+        <property name="connectionFactory" ref="connectionFactory"></property>
+        <property name="messageListener" ref="messageListenerAdapter"></property>
+    </bean>
+	
+</beans>	
