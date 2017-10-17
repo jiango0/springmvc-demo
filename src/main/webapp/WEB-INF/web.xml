@@ -12,7 +12,8 @@
 	    <param-value>
             classpath:applicationContext.xml,
             classpath:applicationContext-shiro.xml,
-            classpath:applicationContext-mongo.xml
+            classpath:applicationContext-mongo.xml,
+            classpath:applicationContext-redis.xml
         </param-value>
   	</context-param>
   	

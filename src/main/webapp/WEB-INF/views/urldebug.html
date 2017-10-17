@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>登录</title>
+	
+	<script type="text/javascript" src="/js/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).on("click", "#queding", function(){
+// 			$.ajax({
+// 				type: 'get',
+// 		        url: "alipays://platformapi/startApp",
+// 		        cache: false,
+// 		        dataType: "jsonp", //跨域采用jsonp方式 
+// 		        processData: false,
+// 		        timeout:2000, //超时时间，毫秒
+// 		        complete: function (data) {
+// 		        	console.log(data.status);
+// 		        	alert(data.status);
+// 		        }
+// 			});
+			
+// 			$.ajax({
+// 				type: 'get',
+// 				dataType: "jsonp",
+// // 				url: "alipays://",
+// 				url: "https://www.baidu.com",
+// 				complete:function(e){
+// 					alert(e.status);
+// 					console.log(e);
+// 					console.log(e.status);
+// 				}
+// 			});
+			
+			var timeout, t = 4000, hasApp = true; 
+			  setTimeout(function () { 
+			    if (hasApp) { 
+			      alert('安装了app'); 
+			    } else { 
+			      alert('未安装app'); 
+			    } 
+			    document.body.removeChild(ifr); 
+			  }, 5000) 
+			  
+			  var t1 = Date.now(); 
+			  var ifr = document.createElement("iframe"); 
+// 			  ifr.setAttribute('src', "alipays://"); 
+// 			  ifr.setAttribute('style', 'display:none'); 
+			  ifr.src = "alipays://";
+			  document.body.appendChild(ifr); 
+// 			  window.location.href = "alipays://";
+			  timeout = setTimeout(function () { 
+			     var t2 = Date.now(); 
+			     if (!t1 || t2 - t1 < t + 100) { 
+			       hasApp = false; 
+			     } 
+			  }, t); 
+			
+		})
+	</script>
+</head>
+<body>
+<div>
+	<input id="queding" type="submit" style="width:200px;height:200px;" value="提交"/>
+</div>
+</body>
+ </html>
