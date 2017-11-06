@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/rabbit
+    http://www.springframework.org/schema/rabbit/spring-rabbit-1.4.xsd">
+
+    <!-- 定义rabbitMQ的连接 -->
+    <rabbit:connection-factory id="connectionFactory"
+                               host="${rabbitmq.ip}"
+                               port="${rabbitmq.port}"
+                               virtual-host="${rabbitmq.virtual.host}"
+                               username="${rabbitmq.manager.user}"
+                               password="${rabbitmq.manager.password}"
+                               channel-cache-size="${rabbitmq.chche.size}"/>
+
+    <!-- 定义一个管理连接 -->
+    <rabbit:admin connection-factory="connectionFactory"
+                  auto-startup="true"/>
+
+    <!-- queue: 定义会话服务队列 -->
+    <rabbit:queue id="event.queue" name="event.queue"
+                  auto-declare="true" durable="true" auto-delete="false" exclusive="false">
+    </rabbit:queue>
+
+    <!-- listener: 消息监听者 -->
+    <bean id="eventListener"
+          class="com.rabbitmqa.listener.EventListener"></bean>
+
+    <!-- listener: 注册消息监听者 -->
+    <rabbit:listener-container
+            connection-factory="connectionFactory">
+        <rabbit:listener ref="eventListener" queues="event.queue"/>
+    </rabbit:listener-container>
+
+    <!-- exchange: 直连交换机 -->
+    <rabbit:direct-exchange name="event.exchange"
+                            id="event.exchange" auto-declare="true" durable="true">
+        <rabbit:bindings>
+            <rabbit:binding queue="event.queue" key="event.queue"></rabbit:binding>
+        </rabbit:bindings>
+    </rabbit:direct-exchange>
+
+    <!-- template: rabbit发送至session模板信息类 -->
+    <rabbit:template id="directTemplate"
+                     connection-factory="connectionFactory"
+                     exchange="event.exchange"
+                     reply-timeout="10000"/>
+
+</beans>	

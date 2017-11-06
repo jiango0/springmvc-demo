@@ -14,8 +14,9 @@
             classpath:applicationContext-shiro.xml,
             classpath:applicationContext-mongo.xml,
             classpath:applicationContext-redis.xml,
-            classpath:applicationContext-producer.xml,
-            classpath:applicationContext-consumer.xml
+            <!--classpath:applicationContext-producer.xml,-->
+            <!--classpath:applicationContext-consumer.xml,-->
+			classpath:applicationContext-rabbitmq.xml
         </param-value>
   	</context-param>
   	
