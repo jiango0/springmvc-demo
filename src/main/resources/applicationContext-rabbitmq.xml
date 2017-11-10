@@ -11,7 +11,7 @@
     <rabbit:connection-factory id="connectionFactory"
                                host="${rabbitmq.ip}"
                                port="${rabbitmq.port}"
-                               virtual-host="${rabbitmq.virtual.host}"
+                               
                                username="${rabbitmq.manager.user}"
                                password="${rabbitmq.manager.password}"
                                channel-cache-size="${rabbitmq.chche.size}"/>
@@ -36,8 +36,8 @@
     </rabbit:listener-container>
 
     <!-- exchange: 直连交换机 -->
-    <rabbit:direct-exchange name="event.exchange"
-                            id="event.exchange" auto-declare="true" durable="true">
+    <rabbit:direct-exchange name="event.direct"
+                            id="event.direct" auto-declare="true" durable="true">
         <rabbit:bindings>
             <rabbit:binding queue="event.queue" key="event.queue"></rabbit:binding>
         </rabbit:bindings>
@@ -46,7 +46,7 @@
     <!-- template: rabbit发送至session模板信息类 -->
     <rabbit:template id="directTemplate"
                      connection-factory="connectionFactory"
-                     exchange="event.exchange"
+                     exchange="event.direct"
                      reply-timeout="10000"/>
 
 </beans>	

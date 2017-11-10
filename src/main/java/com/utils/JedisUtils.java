@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
+import redis.clients.jedis.Transaction;
 
 import java.io.*;
 import java.util.List;
@@ -383,5 +384,20 @@ public class JedisUtils {
 		}
 		return result;
 	}
-	
+
+	public static Transaction multi(){
+		Transaction result = null;
+		Jedis jedis = null;
+		try {
+			jedis = JedisUtils.getJedis();
+			result = jedis.multi();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JedisUtils.getPool().returnResource(jedis);
+		}
+		return result;
+	}
+
 }

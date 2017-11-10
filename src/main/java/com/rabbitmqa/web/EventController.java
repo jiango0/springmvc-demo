@@ -31,4 +31,10 @@ public class EventController {
         return "1";
     }
 
+    @ResponseBody
+    @RequestMapping(value="hello")
+    public String hello(){
+        return "helloWorld";
+    }
+
 }
