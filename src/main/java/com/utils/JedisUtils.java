@@ -30,7 +30,7 @@ public class JedisUtils {
 			String host = "192.168.30.32";
 			Integer port = 6379;
 			
-			pool = new JedisPool(config, host, port, 2000, null, 1);
+			pool = new JedisPool(config, host, port, 2000, null, 0);
 		}
 	}
 	
