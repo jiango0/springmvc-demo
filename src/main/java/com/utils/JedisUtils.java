@@ -27,7 +27,7 @@ public class JedisUtils {
 			config.setTestOnBorrow(true);
 			config.setMaxWaitMillis(5000);
 			
-			String host = "192.168.30.32";
+			String host = "192.168.30.56";
 			Integer port = 6379;
 			
 			pool = new JedisPool(config, host, port, 2000, null, 0);

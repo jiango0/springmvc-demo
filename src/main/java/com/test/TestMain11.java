@@ -26,7 +26,7 @@ public class TestMain11 {
 //        transaction.exec();
 //        System.out.println(incr.get());
 
-        Set<String> set = jedis.keys("zgzyq*");
+        Set<String> set = jedis.keys("activity*");
         if(set != null && !set.isEmpty()){
             String[] keys = new String[set.size()];
             Iterator<String> it = set.iterator();
