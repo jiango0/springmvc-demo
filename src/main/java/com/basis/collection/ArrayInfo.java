@@ -1,7 +1,5 @@
 package com.basis.collection;
 
-import org.apache.lucene.util.ArrayUtil;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
