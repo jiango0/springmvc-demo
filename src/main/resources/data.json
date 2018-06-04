@@ -1,0 +1,22 @@
+{
+  "id": "58e73801-783e-49f6-81a2-1585194e10db",
+  "psc_id": 806,
+  "shop_id": "109AD822-0CC0-407E-AC09-6BE22C8117C8",
+  "shop_code": "CS03",
+  "product_sku": "G0000118111953401",
+  "partner_sign": "6A8CA59D-599A-4B2E-9252-2B72D502E4FF",
+  "product_price": 1,
+  "recharge_coin": 1,
+  "product_status": 1,
+  "machine_product_type": "public",
+  "up_time": "2018-05-10 13:49:55",
+  "down_time": "2018-08-10 00:00:00",
+  "start_time": "2018-05-09 17:42:14",
+  "end_time": "2018-05-31 17:42:18",
+  "use_type": 1,
+  "bought_days": 30,
+  "name": "游戏点类型",
+  "comment": "游戏点类型",
+  "is_invalid": 0,
+  "machines": []
+}
